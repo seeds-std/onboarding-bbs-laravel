@@ -21,12 +21,11 @@ services:
       context: .docker/web
       dockerfile: Dockerfile
     volumes:
-      - ./:/var/www/html
-      - ./.docker/web/001-seeds-laravel.conf:/etc/apache2/sites-enabled/000-default.conf
+      - ./:/app
     ports:
       - "80:80"
-    command: /bin/bash -c "/var/www/html/.docker/web/entrypoint.sh"
-    working_dir: /var/www/html
+    command: /bin/bash -c "/app/.docker/web/entrypoint.sh"
+    working_dir: /app
     depends_on:
       db:
         condition: service_healthy
